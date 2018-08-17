@@ -1,6 +1,8 @@
 ﻿"use strict";
 
-var _ = require('lodash');
+
+const mapCopy = (obj) => { return JSON.parse(JSON.stringify(obj)) }
+
 var expect = require('expect.js');
 var Tools = require('..');
 var Promises = require('best-promise');
@@ -13,7 +15,7 @@ describe('find gitdir tests', function(){
     var envOriginal;
     var controlFsStat;
     beforeEach(function(){
-        configOriginal = _.cloneDeep(Tools.config);
+        configOriginal = mapCopy(Tools.config);
         envOriginal = process.env;
         controlFsStat = expectCalled.control(fs,'stat',{returns:[
             Promises.Promise.resolve({isDirectory: function(){ return true;}})
